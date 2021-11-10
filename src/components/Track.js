@@ -1,4 +1,8 @@
-const Track = ({data,removeTrack,updateTrack}) => {
+import { useContext } from "react";
+import { TracksContext } from "../context/TracksContext";
+
+const Track = ({data}) => {
+    const {removeTrack,updateTrack} = useContext(TracksContext);
     const {name,date,reminder} = data;
     return (
         <div onDoubleClick={()=>updateTrack(data.id)} className={`mt-4 flex justify-between items-center ${reminder ? 'border-l-4  border-green-700':''} p-3 bg-gray-200`}>

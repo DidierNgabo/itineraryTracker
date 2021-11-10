@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import Input from "./Input";
+import { useHistory } from 'react-router-dom';
+import { TracksContext } from "../context/TracksContext";
 
-const Form = ({show,createTrack}) => {
+const Form = () => {
+  const {addTrack} = useContext(TracksContext);
+  const history = useHistory();
   const [name,setName] = useState('');
   const [date,setDate] = useState('');
   const [reminder,setReminder] = useState(false);
@@ -20,16 +24,19 @@ const Form = ({show,createTrack}) => {
   const handleSubmit = (e) =>{
     e.preventDefault();
 
-    createTrack({name,date,reminder})
+    addTrack({name,date,reminder})
 
     setReminder(false);
     setDate('');
-    setName('')
+    setName('');
+    history.push('/');
   }
 
 
   return (
-    <form className={`${show ? "":"hidden"} mb-0 space-y-6`}>
+    <>
+    <h2 className="text-xl text-center mb-10 font-bold">Add a new Iterinary</h2>
+    <form className={`mb-0 space-y-6`}>
       
      <Input id="name" name="name" handleChange={handleChange} value={name} label="name"/>
      
@@ -43,6 +50,7 @@ const Form = ({show,createTrack}) => {
       </div>
       <button type="submit" onClick={handleSubmit} className="form-btn">Submit</button>
     </form>
+    </>
   );
 };
 

@@ -5,10 +5,10 @@ const About = () => {
     history.push('/');
   };
   return (
-    <div className="mt-12 text-center">
-      <p>
+    <div className="my-12 text-center">
+      <p className="mt-10 font-mono font-semibold">
         this is a simple application which keeps notes of your tracks made using
-        create-react-app and strapi cms
+        create-react-app,context api and strapi cms
       </p>
       <button
         className="p-2 bg-indigo-500 mt-5 text-white "
